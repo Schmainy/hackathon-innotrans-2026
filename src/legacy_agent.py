@@ -779,7 +779,7 @@ def _basis_files(keys: set[str]) -> list[str]:
     files: set[str] = set()
     for key in keys:
         if key.startswith("graph:"):
-            files.add(f"Berlin transit graph (data/Straßennetz/graph_db/{key[6:]})")
+            files.add(f"Berlin transit graph (src/graph_db/{key[6:]})")
             continue
         if key.startswith("gtfs:"):
             files.add(f"VBB GTFS (data/derived/{key[5:]})")

@@ -1,0 +1,4 @@
+pandas>=2.0
+networkx>=3.4
+mcp>=1.2
+pypdf>=4.0

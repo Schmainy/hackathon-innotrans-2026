@@ -4,7 +4,7 @@ get_critical_stations    Artikulationspunkte, nach abgeschnittenen Stationen ger
 find_alternative_routes  bis zu 3 kürzeste Wege, optional mit Sperrungen;
                          Fallback auf das Gesamtnetz, wenn die U-Bahn nicht reicht
 find_transit_route       schnellste Verbindung im Gesamtnetz (Bus, Tram,
-                         S-Bahn, U-Bahn) aus data/Straßennetz/graph_db
+                         S-Bahn, U-Bahn) aus src/graph_db
 """
 
 from __future__ import annotations
@@ -13,17 +13,18 @@ import heapq
 import itertools
 import json
 from functools import lru_cache
+from pathlib import Path
 
 import networkx as nx
 
-from src.loader import DATA_ROOT, DataLoader
+from src.loader import DataLoader
 from src.tools._common import as_float, full_day_index, normalize_station, resolve_station
 
 TOP_N = 5
 
 # Gesamtnetz-Graph (build_graph.py + merge_transit.py): Buslinien aus den
 # BVG-Linienbändern, U-/S-Bahn und Tram aus dem VBB-GTFS.
-TRANSIT_DIR = DATA_ROOT / "Straßennetz" / "graph_db"
+TRANSIT_DIR = Path(__file__).resolve().parent.parent / "graph_db"
 TRANSFER_PENALTY_MIN = 3.0
 TRANSIT_LIMITATION = (
     "All lines, stops and times in this result are timetable data [VBB timetable], "
@@ -341,7 +342,7 @@ def _direct_section(graph, stations, src_id: str, dst_id: str,
 
 
 # --------------------------------------------------------------------- #
-# Gesamtnetz (Bus, Tram, S-Bahn, U-Bahn) aus data/Straßennetz/graph_db
+# Gesamtnetz (Bus, Tram, S-Bahn, U-Bahn) aus src/graph_db
 # --------------------------------------------------------------------- #
 
 @lru_cache(maxsize=1)
@@ -477,7 +478,7 @@ def find_transit_route(
         "transfers": transfers,
         "total_with_transfers_minutes": as_float(ride + transfers * penalty / 60, 1),
         "modes_used": sorted({leg["mode"] for leg in legs}),
-        "source": "data/Straßennetz/graph_db/adjacency.json",
+        "source": "src/graph_db/adjacency.json",
         "data_limitation": TRANSIT_LIMITATION,
     }
 
@@ -536,6 +537,6 @@ def find_diverse_transit_routes(
             "stops of the previous routes' main section, so the alternatives use "
             "different corridors."
         ),
-        "source": "data/Straßennetz/graph_db/adjacency.json",
+        "source": "src/graph_db/adjacency.json",
         "data_limitation": TRANSIT_LIMITATION,
     }

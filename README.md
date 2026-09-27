@@ -34,11 +34,13 @@ All credentials are read from `.env` (see [`.env.example`](.env.example)):
 | `AZURE_OPENAI_ENDPOINT` | Endpoint of your resource – either the base URL or the full Responses URL (`…/openai/responses?api-version=…`) |
 | `AZURE_OPENAI_DEPLOYMENT` | Name of your model deployment |
 
-Optionally set `DATA_DIR` to point to a data folder other than `data/`.
+All other variables are optional; `.env.example` lists every variable the code reads, with its default.
 
 ## Data
 
 **The original dataset is not included.** It was provided by Alstom for the hackathon and may not be redistributed – see [`data/README.md`](data/README.md). Without data files in `data/`, the engine and most tools cannot run.
+
+The Berlin transit graph used for routing (bus, tram, S-Bahn, U-Bahn) is built by the scripts in `src/graph_db/` (`build_graph.py` from BVG line PDFs, `merge_transit.py` adds GTFS lines, `network_mcp_tool.py` serves it via MCP). The generated JSON files are not included.
 
 ## Usage
 

@@ -1,6 +1,6 @@
 """Azure-Endpoint-Client.
 
-call_llm  schickt einen Prompt an den Lab-as-a-Service-Endpoint
+call_llm  schickt einen Prompt an den Azure-OpenAI-Endpoint
 
 Bewusst nur mit urllib aus der Standardbibliothek – keine zusätzliche
 HTTP-Abhängigkeit im heissen Pfad. Credentials kommen ausschliesslich aus
@@ -141,7 +141,7 @@ def call_llm(prompt: str, timeout: int = DEFAULT_TIMEOUT) -> str:
         endpoint = endpoint.rstrip("/") + RESPONSES_PATH
     model = values["AZURE_MODEL"]
 
-    # Kein temperature-Parameter: gpt-5.6-luna lehnt ihn mit HTTP 400 ab
+    # Kein temperature-Parameter: das verwendete Reasoning-Modell lehnt ihn mit HTTP 400 ab
     # ("Unsupported parameter: 'temperature' is not supported with this
     # model") - Reasoning-Modelle der Responses-API erlauben kein Sampling-
     # Tuning. Die Antwort meldet zwar temperature=1.0 zurueck, akzeptiert den
