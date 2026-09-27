@@ -1,4 +1,4 @@
-# InnoTrans Hackathon 2026 – U-Bahn Passenger Flow Optimizer
+# InnoTrans Hackathon 2026 – S-Bahn Passenger Flow Optimizer
 
 An AI-assisted tool for analysing and optimising passenger flows in the Berlin U-Bahn network, built during the InnoTrans Hackathon 2026 (Alstom challenge) with data provided by Alstom.
 
