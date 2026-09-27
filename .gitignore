@@ -1,0 +1,14 @@
+.env
+audit_log.jsonl
+feedback_log.jsonl
+learning_report.json
+slidepics/
+data/*
+!data/README.md
+!sbahn_extra_EXAMPLE.csv
+static/alstom.png
+__pycache__/
+*.pyc
+*.log
+venv/
+.venv/

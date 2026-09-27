@@ -1,0 +1,28 @@
+# Web server + UI (frontend / final_InnoTrans)
+fastapi>=0.110
+uvicorn>=0.27
+httpx>=0.27
+python-dotenv>=1.0
+
+# Data + engine (both)
+pandas>=2.0
+numpy>=1.24
+scipy
+networkx>=3.0
+pytz>=2024.1
+openpyxl>=3.1
+
+# LLM tool calling (backend / ubahn_solution): Azure OpenAI Responses API
+openai
+
+# Animated network maps (src/maps.py)
+plotly
+
+# MCP server (mcp_server.py); SDK 2.x or 1.x
+mcp
+
+# Operator web app (app.py, Streamlit UI in the Track Knack design)
+streamlit>=1.40
+
+# Tests
+pytest>=8.0
